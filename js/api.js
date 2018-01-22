@@ -12,7 +12,7 @@ if(window._wp_safelink_location){
 	window._wp_safelink = function(){
 		var anchors = document.querySelectorAll('a[href]');
 		anchors.forEach(function(anchor){
-			var url = window._wp_safelink_location + '/safelink/api/?data=';
+			var url = 'http://' + window._wp_safelink_location + '/safelink/api/?data=';
 			var parse = window.parseUrl(anchor.href);
 			var origin = parse[3];
 			var check = false;
