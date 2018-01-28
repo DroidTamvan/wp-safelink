@@ -12,8 +12,9 @@ if(window._wp_safelink_location){
 			var anchor = anchors[index];
 			var url = 'http://' + window._wp_safelink_location + '/safelink/api/?data=';
 			var check = false;
+			var href = anchor.href;
 			for(var except in window._wp_safelink_except){
-				check = anchor.href.search(window._wp_safelink_except[except]) > -1;
+				check = href.search(window._wp_safelink_except[except]) > -1;
 			}
 			if(origin && !check){
 				anchor.href = url + btoa(encodeURIComponent(anchor.href)) + ".ref";
