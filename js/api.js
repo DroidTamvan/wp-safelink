@@ -6,15 +6,18 @@ if(window._wp_safelink_location){
 	}else{
 		window._wp_safelink_except = [window._wp_safelink_location, location.host];
 	}
+	window.parseUrl = function(string){
+		return /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/.exec(string);
+	}
 	window._wp_safelink = function(){
 		var anchors = document.querySelectorAll('a[href]');
 		for(var index in anchors){
 			var anchor = anchors[index];
 			var url = 'http://' + window._wp_safelink_location + '/safelink/api/?data=';
 			var check = false;
-			var href = anchor.href;
+			var parse = window.parseUrl(anchor.href);
 			for(var except in window._wp_safelink_except){
-				check = href.search(window._wp_safelink_except[except]) > -1;
+				console.log(parse);
 			}
 			if(origin && !check){
 				anchor.href = url + btoa(encodeURIComponent(anchor.href)) + ".ref";
