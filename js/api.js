@@ -8,16 +8,17 @@ if(window._wp_safelink_location){
 	}
 	window._wp_safelink = function(){
 		var anchors = document.querySelectorAll('a[href]');
-		anchors.forEach(function(anchor){
+		for(var index in anchors){
+			var anchor = anchors[index];
 			var url = 'http://' + window._wp_safelink_location + '/safelink/api/?data=';
 			var check = false;
-			window._wp_safelink_except.forEach(function(except){
-				check = anchor.href.search(except) > -1;
-			});
+			for(var except in window._wp_safelink_except){
+				check = anchor.href.search(window._wp_safelink_except[except]) > -1;
+			}
 			if(origin && !check){
 				anchor.href = url + btoa(encodeURIComponent(anchor.href)) + ".ref";
 			}
-		});
+		}
 	}
 	window._wp_safelink();
 }else{
