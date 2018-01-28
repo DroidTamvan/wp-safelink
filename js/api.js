@@ -16,7 +16,7 @@ if(window._wp_safelink_location){
 			var url = 'http://' + window._wp_safelink_location + '/safelink/api/?data=';
 			var check = false;
 			var parse = window.parseUrl(anchor.href);
-			if(parse[3]){
+			if(typeof(parse) !== null){
 				check = window._wp_safelink_except.indexOf(parse[3]) === -1;
 			}
 			if(origin && check){
